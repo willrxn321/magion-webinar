@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI &amp; Automation in L&amp;D — Magion AI Roundtable</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F5F0E8;
+      --navy: #1B2A4A;
+      --gold: #C9A84C;
+      --gold-light: #e2c06e;
+      --text: #1B2A4A;
+      --muted: #4a5568;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      background: var(--navy);
+      padding: 12px 24px;
+      text-align: center;
+    }
+    .topbar-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .topbar img { height: 28px; }
+    .topbar-brand {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .topbar-brand span { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--navy);
+      color: #fff;
+      padding: 64px 24px 72px;
+      text-align: center;
+    }
+    .hero-inner { max-width: 680px; margin: 0 auto; }
+
+    .badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+    .hero h1 span { color: var(--gold); }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: #c5cfe0;
+      margin-bottom: 32px;
+      font-weight: 500;
+    }
+
+    .event-meta {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 20px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 10px;
+      padding: 16px 28px;
+      font-size: 0.92rem;
+    }
+    .event-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #e2e8f0;
+    }
+    .event-meta-item .icon { color: var(--gold); font-size: 1rem; }
+
+    /* ── CONTENT SECTION ── */
+    .section {
+      padding: 56px 24px;
+    }
+    .section-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 24px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--gold);
+      display: inline-block;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    @media (max-width: 600px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 28px;
+      border: 1px solid #e8e2d6;
+    }
+    .card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card h3 .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+    .card h3 .dot-red {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #e05252;
+      flex-shrink: 0;
+    }
+
+    ul.checklist { list-style: none; }
+    ul.checklist li {
+      padding: 7px 0;
+      padding-left: 24px;
+      position: relative;
+      font-size: 0.94rem;
+      color: var(--muted);
+      border-bottom: 1px solid #f0ece4;
+    }
+    ul.checklist li:last-child { border-bottom: none; }
+    ul.checklist li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    ul.crosslist { list-style: none; }
+    ul.crosslist li {
+      padding: 7px 0;
+      padding-left: 24px;
+      position: relative;
+      font-size: 0.94rem;
+      color: var(--muted);
+      border-bottom: 1px solid #f0ece4;
+    }
+    ul.crosslist li:last-child { border-bottom: none; }
+    ul.crosslist li::before {
+      content: '✕';
+      position: absolute;
+      left: 0;
+      color: #e05252;
+      font-weight: 700;
+    }
+
+    /* ── FORM SECTION ── */
+    .form-section {
+      background: var(--navy);
+      padding: 64px 24px;
+    }
+    .form-section-inner { max-width: 560px; margin: 0 auto; }
+
+    .form-section h2 {
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+    .form-section .form-sub {
+      color: #a0aec0;
+      text-align: center;
+      margin-bottom: 36px;
+      font-size: 0.92rem;
+    }
+
+    .form-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 36px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 500px) {
+      .form-row { grid-template-columns: 1fr; }
+      .form-card { padding: 24px; }
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+    .field label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .field label .req { color: var(--gold); margin-left: 2px; }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid #d4cfc6;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--navy);
+      background: #faf8f4;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231B2A4A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
+    }
+    .field input::placeholder,
+    .field textarea::placeholder { color: #a8a19a; }
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      margin-top: 8px;
+      letter-spacing: 0.02em;
+    }
+    .submit-btn:hover { background: var(--gold-light); }
+    .submit-btn:active { transform: scale(0.99); }
+
+    .form-note {
+      text-align: center;
+      color: #a0aec0;
+      font-size: 0.85rem;
+      margin-top: 20px;
+      line-height: 1.5;
+    }
+    .form-note strong { color: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111d30;
+      color: #6b7fa3;
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 0.85rem;
+    }
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+    footer a:hover { text-decoration: underline; }
+    footer .footer-brand {
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+    footer .footer-brand span { color: var(--gold); }
+    footer .divider { margin: 0 8px; opacity: 0.4; }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <span class="topbar-brand">Magion <span>AI</span></span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="badge">Invite Only</div>
+      <h1>AI &amp; Automation<br>in <span>L&amp;D</span></h1>
+      <p class="hero-sub">An Invite-Only Roundtable for Compliance Learning Leaders</p>
+      <div class="event-meta">
+        <span class="event-meta-item">
+          <span class="icon">📅</span>
+          Monday 11 May 2026
+        </span>
+        <span class="event-meta-item">
+          <span class="icon">🕒</span>
+          3pm UK
+        </span>
+        <span class="event-meta-item">
+          <span class="icon">🎥</span>
+          Google Meet
+        </span>
+        <span class="event-meta-item">
+          <span class="icon">⏱</span>
+          60 minutes
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT THIS IS / IS NOT -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="two-col">
+        <div class="card">
+          <h3><span class="dot"></span>What this is</h3>
+          <ul class="checklist">
+            <li>A small, closed session for senior L&amp;D, HR and finance leaders</li>
+            <li>Pure discovery — no pitch, no vendor agenda</li>
+            <li>We want to hear your problems, your wishlist, and your ideas</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3><span class="dot-red"></span>What this is NOT</h3>
+          <ul class="crosslist">
+            <li>Not a webinar</li>
+            <li>Not a product demo</li>
+            <li>Not a sales call</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGISTRATION FORM -->
+  <section class="form-section">
+    <div class="form-section-inner">
+      <h2>Reserve Your Place</h2>
+      <p class="form-sub">Complete the form below — places are strictly limited.</p>
+
+      <div class="form-card">
+        <!-- Replace YOUR_FORM_ID after creating Formspree account -->
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+          <div class="form-row">
+            <div class="field">
+              <label>First name <span class="req">*</span></label>
+              <input type="text" name="first_name" placeholder="Jane" required>
+            </div>
+            <div class="field">
+              <label>Last name <span class="req">*</span></label>
+              <input type="text" name="last_name" placeholder="Smith" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Job title <span class="req">*</span></label>
+            <input type="text" name="job_title" placeholder="Head of L&D" required>
+          </div>
+
+          <div class="field">
+            <label>Company <span class="req">*</span></label>
+            <input type="text" name="company" placeholder="Acme Corp" required>
+          </div>
+
+          <div class="field">
+            <label>Work email <span class="req">*</span></label>
+            <input type="email" name="email" placeholder="jane@company.com" required>
+          </div>
+
+          <div class="field">
+            <label>Industry <span class="req">*</span></label>
+            <select name="industry" required>
+              <option value="" disabled selected>Select your industry</option>
+              <option value="Financial Services">Financial Services</option>
+              <option value="Defence & Aerospace">Defence &amp; Aerospace</option>
+              <option value="Energy & Utilities">Energy &amp; Utilities</option>
+              <option value="Professional Services">Professional Services</option>
+              <option value="Pharma & Life Sciences">Pharma &amp; Life Sciences</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>How did you hear about this?</label>
+            <input type="text" name="referral" placeholder="LinkedIn, colleague, etc.">
+          </div>
+
+          <button type="submit" class="submit-btn">Reserve My Place</button>
+        </form>
+      </div>
+
+      <p class="form-note">
+        <strong>Places are limited.</strong> You'll receive a Google Meet link by email before the session.
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-brand">Magion <span>AI</span></p>
+    <p>
+      Hosted by Will Richardson, CEO · <a href="https://magion.ai">magion.ai</a>
+      <span class="divider">|</span>
+      <a href="https://linkedin.com/in/willrichardson" target="_blank" rel="noopener">LinkedIn</a>
+    </p>
+  </footer>
+
+</body>
+</html>
